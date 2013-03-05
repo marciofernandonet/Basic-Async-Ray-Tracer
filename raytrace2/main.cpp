@@ -6,7 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#include </usr/include/GL/glew.h>
+//#include </usr/include/GL/glew.h>
+#include "glew.h"
 #ifdef __APPLE__
 #include <OpenGL/OpenGL.h>
 #include <GLUT/GLUT.h>
@@ -23,11 +24,15 @@
 
 #include <stdio.h>
 #include <time.h>
+
+#define WIDTH 800
+#define HEIGHT 600
+
 float samplerate = 4.0f;
-int width = 1280, height = 720;
-int window_width = 1280, window_height = 720;
-//int width = 640, height = 480;
-//int window_width = 640, window_height = 480;
+int width = WIDTH, height = HEIGHT;
+int window_width = WIDTH, window_height = HEIGHT;
+//int width = 640/2, height = 480/2;
+//int window_width = 640/2, window_height = 480/2;
 
 Tracer *tracer = 0;
 void *rgb_buffer = 0;
@@ -180,8 +185,8 @@ void keypress(unsigned char key, int x, int y) {
             saveImg();
             break;
         case 'i':
-            tracer->useRandom = !tracer->useRandom;
-            std::cout << "Random region" << (tracer->useRandom ? " enabled\n" : " disabled\n");
+            //tracer->useRandom = !tracer->useRandom;
+           // std::cout << "Random region" << (tracer->useRandom ? " enabled\n" : " disabled\n");
             tracer->resetRegions();
             break;
         case 'o':

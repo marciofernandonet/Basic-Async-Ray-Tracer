@@ -23,7 +23,7 @@ __m128 length_sse(__m128 &x, __m128 &y, __m128 &z){
 
 void normalize_sse(__m128 &x, __m128 &y,__m128 &z){
     
-    __m128 l = _mm_div_ps(_mm_set1_ps(1.0f), _mm_sqrt_ps(length_sse(x, y, z)));
+    __m128 l = _mm_div_ps( _mm_set1_ps( 1.0f ) , _mm_sqrt_ps( length_sse(x, y, z) ));
     
     x = _mm_mul_ps(x, l);
     y = _mm_mul_ps(y, l);

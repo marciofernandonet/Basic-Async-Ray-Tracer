@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		2034D748156DBB9600751C7A /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2034D747156DBB9600751C7A /* libpthread.dylib */; };
 		2034D74B157653B500751C7A /* Vec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2034D74A157653B500751C7A /* Vec3.cpp */; };
-		20EC5341156BC28C00D31947 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20EC5340156BC28C00D31947 /* main.cpp */; };
+		2038DC2515B43C7A003091D6 /* glew.h in Frameworks */ = {isa = PBXBuildFile; fileRef = 2038DC2415B43C7A003091D6 /* glew.h */; };
+		20EC5341156BC28C00D31947 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20EC5340156BC28C00D31947 /* main.cpp */; settings = {COMPILER_FLAGS = "-O3"; }; };
 		20EC5343156BC28C00D31947 /* raytrace2.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 20EC5342156BC28C00D31947 /* raytrace2.1 */; };
-		20EC5351156BC34800D31947 /* raytracer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20EC534A156BC34800D31947 /* raytracer.cpp */; };
+		20EC5351156BC34800D31947 /* raytracer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20EC534A156BC34800D31947 /* raytracer.cpp */; settings = {COMPILER_FLAGS = "-O3"; }; };
 		20EC5352156BC34800D31947 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20EC534C156BC34800D31947 /* scene.cpp */; };
 		20EC5356156BC36300D31947 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20EC5355156BC36200D31947 /* GLUT.framework */; };
 		20EC5358156BCF3700D31947 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20EC5357156BCF3700D31947 /* OpenGL.framework */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		2034D747156DBB9600751C7A /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
 		2034D74A157653B500751C7A /* Vec3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vec3.cpp; sourceTree = "<group>"; };
+		2038DC2415B43C7A003091D6 /* glew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = glew.h; path = ../../../../../System/Library/Frameworks/GL/glew.h; sourceTree = "<group>"; };
 		20EC533C156BC28B00D31947 /* raytrace2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = raytrace2; sourceTree = BUILT_PRODUCTS_DIR; };
 		20EC5340156BC28C00D31947 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		20EC5342156BC28C00D31947 /* raytrace2.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = raytrace2.1; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2038DC2515B43C7A003091D6 /* glew.h in Frameworks */,
 				2034D748156DBB9600751C7A /* libpthread.dylib in Frameworks */,
 				20EC5358156BCF3700D31947 /* OpenGL.framework in Frameworks */,
 				20EC5356156BC36300D31947 /* GLUT.framework in Frameworks */,
@@ -63,6 +66,7 @@
 		20EC5331156BC28A00D31947 = {
 			isa = PBXGroup;
 			children = (
+				2038DC2415B43C7A003091D6 /* glew.h */,
 				2034D747156DBB9600751C7A /* libpthread.dylib */,
 				20EC5357156BCF3700D31947 /* OpenGL.framework */,
 				20EC5355156BC36200D31947 /* GLUT.framework */,

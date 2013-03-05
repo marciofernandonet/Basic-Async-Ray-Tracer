@@ -14,9 +14,11 @@
 #include "xmmintrin.h"
 using namespace std;
 
-#define NR_OF_REGIONS 8
-#define NR_OF_THREADS 7
+#define NR_OF_REGIONS 200
+#define NR_OF_THREADS 8
 #define MAX_DEPTH 10
+
+#define SHUFFLE_REGIONS 0
 
 class Scene;
 class Tracer;
@@ -65,7 +67,6 @@ public:
     int maxDepth;
     
     bool *showBenchmarking;
-    bool useRandom;
     bool shouldRender;
 
     Vec3 campos;

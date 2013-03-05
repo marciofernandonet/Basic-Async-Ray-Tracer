@@ -6,7 +6,7 @@
 //  Created by Björn Dagerman on 2012-05-22.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 
-#include </usr/include/GL/glew.h>
+#include "glew.h"
 #ifdef __APPLE__
 #include <OpenGL/OpenGL.h>
 #include <GLUT/GLUT.h>
@@ -40,7 +40,6 @@ void Tracer::setTarget(int *width, int *height,int *ww, int*wh, void*rgb_b, floa
     this->window_height = wh;
     samplerate = sr;
     campos = Vec3(0,0,-5);
-    useRandom = true;
     rgb_buffer = rgb_b;
     
     resetRegions();
@@ -382,48 +381,57 @@ void *threaded_render(void *cam){
     int *id = (int*)cam;
     int i = *id;
     delete id;
-    
     Tracer *tracer = Tracer::getInstance();
-    
-    Region r = vr_regions.at((++lastregion) % vr_regions.size());
-    if (complete >= vr_regions.size() && complete <= vr_regions.size()+(NR_OF_THREADS/2)  && *tracer->showBenchmarking){
-        clock_t end = clock();
-        float total = end - start;
-        
-        cout << "complete rendering took: " << total/CLOCKS_PER_SEC << " seconds.\n";
-    }
-    int depth = complete >= NR_OF_THREADS ? 1 : tracer->maxDepth-2;
-    tracer->render_sse(r.ystart, r.yend, r.xstart, r.xend, depth);
-    ++complete;
+    while (true) {
 
-    pthread_join(tracer->threads[i], 0);
+        
+        
+        Region r = vr_regions.at((++lastregion) % vr_regions.size());
+        if (complete >= vr_regions.size() && complete <= vr_regions.size()+(NR_OF_THREADS/2)  && *tracer->showBenchmarking){
+            clock_t end = clock();
+            float total = end - start;
+            
+            cout << "complete rendering took: " << total/CLOCKS_PER_SEC << " seconds.\n";
+        }
+        int depth = complete >= NR_OF_THREADS ? 1 : tracer->maxDepth-2;
+        tracer->render_sse(r.ystart, r.yend, r.xstart, r.xend, depth);
+        ++complete;
+        
+        
+    }
+
+
+    //pthread_join(tracer->threads[i], 0);
     return 0;
 }
 
 
-
+bool first = true;
 
 void Tracer::render(Vec3 &cam){
     if (start == 0) start = clock();
     
     if (campos.x != cam.x ||campos.y != cam.y ||campos.z != cam.z){
         campos = cam;
-        if (useRandom)
+        if (SHUFFLE_REGIONS)
             shuffle();    
         complete = 0;
         start = clock();
     }
 
     shouldRender = true;
-    
-    for (int i = 0; i < NR_OF_THREADS;++i){
-        int msg = pthread_kill(threads[i], 0);
-        if (msg != 0){
-            int *id = new int();
-            *id = i;
-            pthread_create(threads+i, NULL, threaded_render, id);
+    if (first){
+        for (int i = 0; i < NR_OF_THREADS;++i){
+            int msg = pthread_kill(threads[i], 0);
+            if (msg != 0){
+                int *id = new int();
+                *id = i;
+                pthread_create(threads+i, NULL, threaded_render, id);
+            }
         }
+        first = false;
     }
+
 }
 
 void Tracer::render_sse(int ystart,int yend, int xstart, int xend, int maxdepth){
